@@ -12,8 +12,8 @@ pipeline {
   }
   environment {
     //these will be used throughout the Pipeline
-    DOCKER_HUB_USER = 'beedemo'
-    DOCKER_CREDENTIAL_ID = 'docker-hub-beedemo'
+    DOCKER_HUB_USER = 'codeplaygraham'
+    DOCKER_CREDENTIAL_ID = 'docker-hub-grust'
     //will shorten sh step for frist two stages, but require stage level environment variables to override
     COMPOSE_FILE = 'docker-compose-test.yml'
   }
@@ -103,6 +103,7 @@ pipeline {
   post {
     always {
       sh "docker-compose -f docker-compose-test-local.yml down"
+      slackSend(color: "good, message: " grust- success")
     }
   }
-}
+})
